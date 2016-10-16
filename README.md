@@ -1,7 +1,6 @@
 # Formal Security Analysis for the Secure Swarm Toolkit (SST)
 
-Authors: Hokeun Kim, Eunsuk Kang, Edward Lee, David Bronman
-
+Authors: Hokeun Kim, Eunsuk Kang, Edward Lee, David Bronman__
 Contact: hokeunkim@eecs.berkeley.edu or eunsuk.kang@berkeley.edu
 
 ## Introduction 
@@ -13,8 +12,7 @@ We''ve performed a verification of the SST protocol model to check whether it sa
 ## Content of the repository:
 
 model/
-
-  Auth.als: An Alloy model of the SST protocol
-
-  Auth.thm: A custom visualization theme for the Alloy model
+  Auth.als: An Alloy model of the SST protocol__
+  Auth.thm: A custom visualization theme for the Alloy model__
+  
   
