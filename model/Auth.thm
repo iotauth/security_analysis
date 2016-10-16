@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<alloy>
+
+<view nodetheme="Martha" edgetheme="Martha">
+
+<projection> <type name="Time"/> </projection>
+
+<defaultnode/>
+
+<defaultedge/>
+
+<node>
+   <type name="AsymKey"/>
+   <type name="Auth"/>
+   <type name="AuthID"/>
+   <type name="AuthSessionKeyReq"/>
+   <type name="AuthSessionKeyResp"/>
+   <type name="AuthX"/>
+   <type name="AuthY"/>
+   <type name="ChargingStation"/>
+   <type name="Device"/>
+   <type name="EV"/>
+   <type name="Eve"/>
+   <type name="EVSecret"/>
+   <type name="Int"/>
+   <type name="Key"/>
+   <type name="MaliciousPayload"/>
+   <type name="MyAuthX"/>
+   <type name="MyAuthY"/>
+   <type name="MyChargingStation"/>
+   <type name="MyEV"/>
+   <type name="Name"/>
+   <type name="Nonce"/>
+   <type name="Payload"/>
+   <type name="PrvkAttacker"/>
+   <type name="PrvkAuthX"/>
+   <type name="PrvkAuthY"/>
+   <type name="PrvkEV"/>
+   <type name="PrvkStation"/>
+   <type name="PubkAttacker"/>
+   <type name="PubkAuthX"/>
+   <type name="PubkAuthY"/>
+   <type name="PubkEV"/>
+   <type name="PubkStation"/>
+   <type name="SendSecretMessage"/>
+   <type name="SessionKeyReq"/>
+   <type name="SessionKeyReqNoDistrKey"/>
+   <type name="SessionKeyResp"/>
+   <type name="SessionKeyRespNoDistrKey"/>
+   <type name="SKID"/>
+   <type name="String"/>
+   <type name="SymKey"/>
+   <type name="Time"/>
+   <type name="univ"/>
+   <type name="ordering/Ord"/>
+   <type name="seq/Int"/>
+   <set name="this/Client" type="Device"/>
+   <set name="this/Server" type="Device"/>
+   <set name="$confidentiality_d" type="Device"/>
+   <set name="$confidentiality_s" type="Payload"/>
+   <set name="$confidentiality_t" type="Time"/>
+   <set name="First" type="ordering/Ord"/>
+   <set name="Next" type="ordering/Ord"/>
+</node>
+
+<node color="Red">
+   <type name="Attacker"/>
+</node>
+
+<node visible="no" color="Gray">
+   <type name="Message"/>
+</node>
+
+<node visible="no" shape="Ellipse" color="Green">
+   <type name="Entity"/>
+</node>
+
+<node visible="yes">
+   <set name="at" type="Message"/>
+</node>
+
+<node visible="yes" showlabel="no">
+   <set name="$relevantNodes" type="Entity"/>
+</node>
+
+<edge color="Black" style="Bold" weight="3">
+   <relation name="sender"> <type name="Message"/> <type name="Entity"/> </relation>
+</edge>
+
+<edge color="Red" style="Bold" layout="yes" weight="2">
+   <relation name="$learning"> <type name="Entity"/> <type name="Key"/> </relation>
+   <relation name="$learning"> <type name="Entity"/> <type name="Payload"/> </relation>
+</edge>
+
+<edge style="Bold" attribute="no">
+   <relation name="$sendsTo"> <type name="Entity"/> <type name="Entity"/> </relation>
+</edge>
+
+<edge visible="no">
+   <relation name="$KNOWING"> <type name="Entity"/> <type name="AuthID"/> </relation>
+   <relation name="$KNOWING"> <type name="Entity"/> <type name="Nonce"/> </relation>
+   <relation name="$learning"> <type name="Entity"/> <type name="AuthID"/> </relation>
+   <relation name="$learning"> <type name="Entity"/> <type name="Name"/> </relation>
+   <relation name="$learning"> <type name="Entity"/> <type name="Nonce"/> </relation>
+   <relation name="initKnowledge"> <type name="Entity"/> <type name="AuthID"/> </relation>
+   <relation name="initKnowledge"> <type name="Entity"/> <type name="Name"/> </relation>
+   <relation name="initKnowledge"> <type name="Entity"/> <type name="Nonce"/> </relation>
+   <relation name="initKnowledge"> <type name="Entity"/> <type name="Payload"/> </relation>
+   <relation name="name"> <type name="Device"/> <type name="Name"/> </relation>
+   <relation name="pubKey"> <type name="Entity"/> <type name="AsymKey"/> </relation>
+   <relation name="receiver"> <type name="Message"/> <type name="Entity"/> </relation>
+</edge>
+
+<edge visible="no" attribute="no">
+   <relation name="id"> <type name="Auth"/> <type name="AuthID"/> </relation>
+   <relation name="keys"> <type name="Entity"/> <type name="Key"/> </relation>
+   <relation name="policy"> <type name="Auth"/> <type name="Name"/> <type name="Name"/> </relation>
+</edge>
+
+<edge visible="no" attribute="yes">
+   <relation name="$KNOWING"> <type name="Entity"/> <type name="Key"/> </relation>
+   <relation name="$KNOWING"> <type name="Entity"/> <type name="Name"/> </relation>
+   <relation name="$KNOWING"> <type name="Entity"/> <type name="Payload"/> </relation>
+   <relation name="$KNOWING"> <type name="Entity"/> <type name="SKID"/> </relation>
+   <relation name="authDistrKey"> <type name="Device"/> <type name="AuthID"/> <type name="SymKey"/> </relation>
+   <relation name="authID"> <type name="SessionKeyRespNoDistrKey"/> <type name="AuthID"/> </relation>
+   <relation name="authID"> <type name="SKID"/> <type name="AuthID"/> </relation>
+   <relation name="authPublicKey"> <type name="Device"/> <type name="AuthID"/> <type name="AsymKey"/> </relation>
+   <relation name="content"> <type name="Message"/> <type name="AuthID"/> </relation>
+   <relation name="content"> <type name="Message"/> <type name="Key"/> </relation>
+   <relation name="content"> <type name="Message"/> <type name="Name"/> </relation>
+   <relation name="content"> <type name="Message"/> <type name="Nonce"/> </relation>
+   <relation name="content"> <type name="Message"/> <type name="Payload"/> </relation>
+   <relation name="content"> <type name="Message"/> <type name="SKID"/> </relation>
+   <relation name="encryptedWith"> <type name="Message"/> <type name="AuthID"/> <type name="Key"/> </relation>
+   <relation name="encryptedWith"> <type name="Message"/> <type name="Key"/> <type name="Key"/> </relation>
+   <relation name="encryptedWith"> <type name="Message"/> <type name="Name"/> <type name="Key"/> </relation>
+   <relation name="encryptedWith"> <type name="Message"/> <type name="Nonce"/> <type name="Key"/> </relation>
+   <relation name="encryptedWith"> <type name="Message"/> <type name="Payload"/> <type name="Key"/> </relation>
+   <relation name="encryptedWith"> <type name="Message"/> <type name="SKID"/> <type name="Key"/> </relation>
+   <relation name="entityDistrKey"> <type name="Auth"/> <type name="Name"/> <type name="SymKey"/> </relation>
+   <relation name="entityPublicKey"> <type name="Auth"/> <type name="Name"/> <type name="AsymKey"/> </relation>
+   <relation name="initKnowledge"> <type name="Entity"/> <type name="Key"/> </relation>
+   <relation name="initKnowledge"> <type name="Entity"/> <type name="SKID"/> </relation>
+   <relation name="pair"> <type name="AsymKey"/> <type name="AsymKey"/> </relation>
+   <relation name="requester"> <type name="SessionKeyReqNoDistrKey"/> <type name="Name"/> </relation>
+   <relation name="responseTo"> <type name="Message"/> <type name="Message"/> </relation>
+   <relation name="secrets"> <type name="Device"/> <type name="Payload"/> </relation>
+   <relation name="sessionKey"> <type name="Auth"/> <type name="Name"/> <type name="SymKey"/> </relation>
+   <relation name="skid"> <type name="AuthSessionKeyReq"/> <type name="SKID"/> </relation>
+   <relation name="skid"> <type name="AuthSessionKeyResp"/> <type name="SKID"/> </relation>
+   <relation name="skid"> <type name="SessionKeyReqNoDistrKey"/> <type name="SKID"/> </relation>
+   <relation name="skid"> <type name="SessionKeyResp"/> <type name="SKID"/> </relation>
+   <relation name="target"> <type name="SessionKeyReqNoDistrKey"/> <type name="Name"/> </relation>
+   <relation name="targetEntity"> <type name="SessionKeyResp"/> <type name="Name"/> </relation>
+   <relation name="to"> <type name="SendSecretMessage"/> <type name="Name"/> </relation>
+   <relation name="usedKeys"> <type name="Auth"/> <type name="SymKey"/> </relation>
+</edge>
+
+</view>
+
+</alloy>
