@@ -26,12 +26,12 @@ pred knows[e : Entity, d : Name + AuthID + Payload + Nonce + Key + SKID, t : Tim
 	some t' : t.prevs, m : receiver.e | 
 		m in at.t' and learns[e, d, m])	
 }
-
+/*
 fun KNOWING : Entity -> (Name + AuthID + Payload + Nonce + Key + SKID) -> Time {
 	{ e : Entity, d : Name + AuthID + Payload + Nonce + Key + SKID, t : Time |
 		knows[e,d,t] }
 }
-
+*/
 // Entities (Auth or device)
 abstract sig Entity {
 	-- a set of data values that this entity knows in its initial state
@@ -214,11 +214,12 @@ fun encryptionKeys[m : Message] : set Key {
 fun pairedWith[k : Key] : Key {
 	k in SymKey implies k else k.pair
 }
-
+/*
 fun learning : Entity -> (Name + AuthID + Payload + Nonce + Key + SKID) -> Time {
 	{ e : Entity, d : Name + AuthID + Payload + Nonce + Key + SKID, t : Time |
 		some m : at.t | learns[e, d, m] and e = m.receiver }
 }
+*/
 
 -- this predicate evaluates to true iff entity "e" can learn data "d" from message "m"
 pred learns[e : Entity, d : Name + AuthID + Payload + Nonce + Key + SKID, m : Message] {
@@ -465,12 +466,19 @@ pred confidentiality {
 	no d : Device - Attacker, s : d.secrets, t : Time |  
 		knows[Attacker, s, t]
 }
-
+pred integrity {
+	-- Attacker must not know keys for integrity and message authenticity
+	no d : Device - Attacker, a : Auth,  t : Time, s : Name.(d.sessionKey.t)
+			+ AuthID.(d.authDistrKey.t) + (d.pubKey.pair) + (a.pubKey.pair)|  
+		knows[Attacker, s, t]
+}
+/*
 pred integrity {
 	-- Attacker's secret should never flow into a non-attacker device
 	no d : Device - Attacker, s : Attacker.secrets, t : Time |
 		knows[d, s, t]	
 }
+*/
 
 /** Assumptions needed to satisfy security properties **/
 pred assumptions {
