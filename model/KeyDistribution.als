@@ -156,41 +156,41 @@ fact AuthBehavior {
 			-- if the pair appears in the policy table
 			m.requester -> m.target in a.policy 
 
-		all k : SymKey, t : Time - first | let t' = t.prev |
+		all k : SymKey, t : Time - first | let tp = t.prev |
 			-- "k" is part of a used key set at time "t" iff
 			k in a.usedKeys.t iff {
-				-- "k" was already in the used set in the previous time "t'", or
-				k in a.usedKeys.t' or 
+				-- "k" was already in the used set in the previous time "tp", or
+				k in a.usedKeys.tp or
 				-- this Auth previously sent out a response that includes "k" 
 				-- as a session/distribution key
-				some m : at.t' & SessionKeyResp & sender.a|
-					(no (a.sessionKey.t')[m.targetEntity] and k = m.sessionKey) or
+				some m : at.tp & SessionKeyResp & sender.a|
+					(no (a.sessionKey.tp)[m.targetEntity] and k = m.sessionKey) or
 					(m in SessionKeyRespNoDistrKey and k = m.distrKey)
 			}
 
-		all n : Name, k : SymKey, t : Time - first | let t' = t.prev |
+		all n : Name, k : SymKey, t : Time - first | let tp = t.prev |
 			-- (n, k) appears in the distribution key table at time "t" iff
 			n -> k -> t in a.entityDistrKey iff {
-				-- (n, k) already is in the table at t', or
-				n -> k -> t' in a.entityDistrKey or (
+				-- (n, k) already is in the table at tp, or
+				n -> k -> tp in a.entityDistrKey or (
 				-- this Auth previously sent out a response to "n" with distribution key "k"
-				some m : at.t' & SessionKeyRespNoDistrKey |
+				some m : at.tp & SessionKeyRespNoDistrKey |
 					m.sender = a and
 					k = m.distrKey and 
 					n = m.responseTo.requester)
 			}
 
-		all n : Name, k : SymKey, t : Time - first | let t' = t.prev |
+		all n : Name, k : SymKey, t : Time - first | let tp = t.prev |
 			-- (n, k) appears in the session key table at time "t" iff
 			n -> k -> t in a.sessionKey iff {
-				-- (n, k) already is in the table at t', or
-				n -> k -> t' in a.sessionKey or (
+				-- (n, k) already is in the table at tp, or
+				n -> k -> tp in a.sessionKey or (
 				-- this Auth previously sent out a response to "n" with session key "k"
-				(some m : at.t' & SessionKeyResp |
+				(some m : at.tp & SessionKeyResp |
 					m.sender = a and
 					k = m.sessionKey and 
 					n in m.responseTo.(requester + target))) or
-				(some m : at.t' & AuthSessionKeyResp |
+				(some m : at.tp & AuthSessionKeyResp |
 					m.receiver = a and 
 					k = m.sessionKey)
 			}	
@@ -201,10 +201,10 @@ fact DeviceBehavior {
 	all d : Device {
 		-- This device can obtain a new distribution key 
 		-- only through a response from Auth
-		all aid : AuthID, k : SymKey, t : Time - first | let t' = t.prev |
+		all aid : AuthID, k : SymKey, t : Time - first | let tp = t.prev |
 			aid -> k -> t in d.authDistrKey iff {
-				aid -> k ->  t' in d.authDistrKey or (
-					some m : at.t' & SessionKeyRespNoDistrKey |
+				aid -> k ->  tp in d.authDistrKey or (
+					some m : at.tp & SessionKeyRespNoDistrKey |
 					m.receiver = d and
 					aid = m.authID and
 					k = m.distrKey)
@@ -212,10 +212,10 @@ fact DeviceBehavior {
 
 		-- This device can obtain a new session key 
 		-- only through a response from Auth
-		all n : Name, k : SymKey, t : Time - first | let t' = t.prev |
+		all n : Name, k : SymKey, t : Time - first | let tp = t.prev |
 			n -> k -> t in d.sessionKey iff {
-				n -> k -> t' in d.sessionKey or (
-				some m : at.t' & SessionKeyResp |
+				n -> k -> tp in d.sessionKey or (
+				some m : at.tp & SessionKeyResp |
 					m.receiver = d and
 					n = m.targetEntity and
 					k = m.sessionKey)	
