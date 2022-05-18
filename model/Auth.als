@@ -26,8 +26,8 @@ pred knows[e : Entity, d : Name + AuthID + Payload + Nonce + Key + SKID + Token,
 	-- then either "d" must be in this entity's initial knowledge, or
 	(d in e.initKnowledge or
 	-- this entity must have received some message from which it learns "d"
-	some t' : t.prevs, m : receiver.e | 
-		m in at.t' and learns[e, d, m])	
+	some tp : t.prevs, m : receiver.e |
+		m in at.tp and learns[e, d, m])
 }
 
 // Entities (Auth or device)
