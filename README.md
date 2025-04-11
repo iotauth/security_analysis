@@ -15,7 +15,7 @@ model/
   Auth.als: An Alloy model of the SST protocol   
   Auth.thm: A custom visualization theme for the Alloy model   
 
-  [Alloy 6.2.0] (https://github.com/AlloyTools/org.alloytools.alloy/releases)
+  [Alloy 6.2.0](https://github.com/AlloyTools/org.alloytools.alloy/releases)
   
   
   
