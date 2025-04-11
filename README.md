@@ -19,7 +19,7 @@ model/
 
   
   ## Clone repository
-  $ git clone https://github.com/iotauth/security_analysis.git
+ <pre>''' $ git clone https://github.com/iotauth/security_analysis.git'''</pre>
 
   
   
