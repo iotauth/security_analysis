@@ -16,6 +16,11 @@ model/
   Auth.thm: A custom visualization theme for the Alloy model   
 
   [Alloy 6.2.0](https://github.com/AlloyTools/org.alloytools.alloy/releases)
+
+  ---
+  ## Clone repository
+  $ git clone https://github.com/iotauth/security_analysis.git
+
   
   
   
