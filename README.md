@@ -18,9 +18,6 @@ model/
   [Alloy 6.2.0](https://github.com/AlloyTools/org.alloytools.alloy/releases)
 
   
-  ## Clone repository
- <pre>```bash git clone https://github.com/iotauth/security_analysis.git```</pre>
-
   
   
   
