@@ -17,6 +17,47 @@ model/
 
   [Alloy 6.2.0](https://github.com/AlloyTools/org.alloytools.alloy/releases)
 
+## Clone repository
+
+```bash
+git clone https://github.com/iotauth/security_analysis.git
+```
+
+
+# Download Alloy
+
+## Linux 24.04
+
+```bash
+$ wget https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/alloy-6.2.0-linux-amd64.tar.gz
+$ tar -xvzf alloy-6.2.0-linux-amd64.tar.gz
+```
+
+## Mac with Apple Silicon
+1. Download [alloy-6.2.0-mac-aarch64.zip](https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/alloy-6.2.0-mac-aarch64.zip)
+2. Unzip and move `Alloy` file to the `/Applications` folder
+
+### ⚠️ MacOS Security Prompt
+
+If you see a warning that *"Error “Alloy” Not opened: Apple could not verify “Alloy” is free of malware that may harm your Mac or compromise your privacy,"* follow these steps:
+
+1. Close the warning by clicking `Done`
+2. Open `System Settings > Privacy & Security`
+3. Scroll down to the message about Alloy being blocked
+4. Click `Open Anyway` and confirm with your password
+
+
+
+## Run the Alloy Model
+
+Once Alloy is installed and the repository is cloned, folow these steps to run the alaysis:
+
+1. Launch Alloy
+2. Open the file `/security_analysis/model/Analysis.als`
+3. Click **Execute**
+4. To view the results, click **Show**
+
+
   
   
   
