@@ -48,7 +48,7 @@ Once Alloy is installed and the repository is cloned, folow these steps to run t
 1. Launch Alloy
 2. Open the file `/security_analysis/model/Analysis.als`
 3. Click **Execute**
-4. To view the results, click **Show**
+4. To view the results in the visualizer, click **Show**
 
 
   
