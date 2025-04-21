@@ -32,7 +32,7 @@ git clone https://github.com/iotauth/security_analysis.git
 
 ### ⚠️ MacOS Security Prompt
 
-If you see a warning that *"Error “Alloy” Not opened: Apple could not verify “Alloy” is free of malware that may harm your Mac or compromise your privacy,"* follow these steps:
+If you see a warning message, *"Error “Alloy” Not opened: Apple could not verify “Alloy” is free of malware that may harm your Mac or compromise your privacy,"* follow these steps:
 
 1. Close the warning by clicking `Done`
 2. Open `System Settings > Privacy & Security`
