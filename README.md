@@ -26,13 +26,6 @@ git clone https://github.com/iotauth/security_analysis.git
 
 # Download Alloy
 
-## Linux 24.04
-
-```bash
-$ wget https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/alloy-6.2.0-linux-amd64.tar.gz
-$ tar -xvzf alloy-6.2.0-linux-amd64.tar.gz
-```
-
 ## Mac with Apple Silicon
 1. Download [alloy-6.2.0-mac-aarch64.zip](https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v6.2.0/alloy-6.2.0-mac-aarch64.zip)
 2. Unzip and move `Alloy` file to the `/Applications` folder
