@@ -19,13 +19,6 @@ pred integrity {
 		knows[Attacker, s, t]
 }
 
-/*
-pred integrity {
-	-- Attacker's secret should never flow into a non-attacker device
-	no d : Device - Attacker, s : Attacker.secrets, t : Time |
-		knows[d, s, t]	
-}
-*/
 
 /** Assumptions needed to satisfy security properties **/
 pred assumptions {
@@ -80,7 +73,7 @@ fact AttackerModel {
 	Attacker.secrets = MaliciousPayload
 }
 
-// these "one sig"s are like constants
+// these "one sig"s function as constants
 one sig Eve, MyEV, MyChargingStation extends Name {}
 one sig PubkEV, PrvkEV, 	-- public and private keys of EV, etc.,
 	PubkStation, PrvkStation, 
@@ -132,10 +125,10 @@ fact {
 
 /** Commands **/
 
--- Generate some random scenario with at most 4 messages and 20 data elements
+-- Generate some random scenario with at most 5 messages
 run GenerateRandomScenario {
 	ChargingStation.(authDistrKey.first).SymKey in MyAuthY
-} for 1 but 5 Time, 5 Message,  2 Payload, 3 Name, 13 Key///, 20 Data
+} for 1 but 5 Time, 5 Message, 2 Payload, 3 Name, 13 Key
 
 run CommunicationExample {
 	assumptions
@@ -174,7 +167,6 @@ check CheckConfidentiality {
 check CheckIntegrity {
 	assumptions implies integrity
 } for 
-//1 but 6 Time, 6 Message//, 20 Data
 1 but 5 Time, 5 Message, 2 Payload, 3 Name, 13 Key
 
 /** Some other random stuff **/
@@ -209,8 +201,6 @@ run {
 				no m3.content & ChargingStation.initKnowledge
 				learns[ChargingStation, EV.secrets, m3]	
 				knows[ChargingStation, EV.secrets, m3.at.next]
-//				some m3.content & EV.secrets
-//				no SKID & m3.content
 /*
 				m3.content in EV.initKnowledge
 				m3.content not in ChargingStation.initKnowledge
